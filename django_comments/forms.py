@@ -9,6 +9,7 @@ from django.utils.encoding import force_text
 from django.utils.text import get_text_list
 from django.utils import timezone
 from django.utils.translation import pgettext_lazy, ungettext, ugettext, ugettext_lazy as _
+from models import *
 
 from . import get_model
 
@@ -190,6 +191,8 @@ class CommentDetailsForm(CommentSecurityForm):
 
 
 class CommentForm(CommentDetailsForm):
+    parent = forms.ModelChoiceField(queryset=Comment.objects.all(), required=False, widget=forms.HiddenInput)
+
     honeypot = forms.CharField(required=False,
                                label=_('If you enter anything in this field '
                                        'your comment will be treated as spam'))
@@ -200,3 +203,8 @@ class CommentForm(CommentDetailsForm):
         if value:
             raise forms.ValidationError(self.fields["honeypot"].label)
         return value
+
+    def get_comment_create_data(self, site_id=None):
+        data = super(CommentForm, self).get_comment_create_data()
+        data['parent'] = self.cleaned_data['parent']
+        return data

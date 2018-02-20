@@ -31,7 +31,6 @@ SITE_ID = 1
 
 # Application definition
 
-COMMENTS_APP = 'comments'
 
 INSTALLED_APPS = [
 
@@ -47,7 +46,6 @@ INSTALLED_APPS = [
     'mptt',
 
     'blog',
-    'comments',
 ]
 
 MIDDLEWARE = [
@@ -66,7 +64,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                 os.path.join(BASE_DIR, 'comments/templates'),]
+                 # os.path.join(BASE_DIR, 'comments/templates'),
+                 ]
         ,
         'APP_DIRS': True,
         'OPTIONS': {

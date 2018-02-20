@@ -3,13 +3,20 @@ from django.db import models
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
+from mptt.models import MPTTModel, TreeForeignKey
+
 
 from .abstracts import (
     COMMENT_MAX_LENGTH, BaseCommentAbstractModel, CommentAbstractModel,
 )
 
 
-class Comment(CommentAbstractModel):
+class Comment(MPTTModel, CommentAbstractModel):
+    parent = TreeForeignKey('self', blank=True, null=True, related_name='children')
+
+    class MPTTMeta:
+        order_insertion_by = ['submit_date']
+
     class Meta(CommentAbstractModel.Meta):
         db_table = "django_comments"
 
