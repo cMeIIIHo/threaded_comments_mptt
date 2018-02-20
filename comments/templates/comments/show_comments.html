@@ -8,10 +8,10 @@
     <li>
 
     <a name="c{{ node.id }}"></a>
-    {{ node.comment }}
-    {{ node.user_name }}
-    {{ node.submit_date|timesince }} ago
-    <a href="{{ object.get_absolute_url }}#c{{ node.id }}">#</a>
+    <div>{{ node.comment }}</div>
+    <div>{{ node.user_name }}</div>
+    <div>{{ node.submit_date|timesince }} ago</div>
+    <div><a href="{{ object.get_absolute_url }}#c{{ node.id }}">#</a></div>
     <h1> {{ node.level }}</h1>
 
     {% render_comment_form for object %}

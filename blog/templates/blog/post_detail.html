@@ -10,7 +10,7 @@
 <h1>{{ post.title }}</h1>
 <p>{{ post.text }}</p>
 
-{% with post as object %}{% include "comments/_comments.html" %}{% endwith %}
+{% with post as object %}{% include "comments/show_comments.html" %}{% endwith %}
 
 </body>
 </html>
