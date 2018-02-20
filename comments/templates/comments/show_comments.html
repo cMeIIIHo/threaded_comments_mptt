@@ -2,7 +2,6 @@
 {% load mptt_tags %}
 
 
-
 {% get_comment_list for object as comments %}
 {% if comments %}
     <ul>
@@ -13,7 +12,7 @@
     <h2>{{ node.comment }} (comment level = {{ node.level }})</h2>
     <div>{{ node.user_name }}, {{ node.submit_date|timesince }} ago</div>
 {#    <div><a href="{{ object.get_absolute_url }}#c{{ node.id }}">#</a></div>#}
-    <button type="button" class="btn btn-primary">Ответить</button>
+    <button type="button" class="btn btn-primary" data-js-node_id="{{ node.id }}" onclick="get_answer_form(this)">Ответить</button>
 
 
 
