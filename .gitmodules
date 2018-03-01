@@ -1,0 +1,3 @@
+[submodule "django_comments"]
+	path = django_comments
+	url = https://github.com/hlopikit/its_django_comments.git
